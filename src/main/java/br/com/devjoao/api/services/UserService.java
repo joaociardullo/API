@@ -4,4 +4,6 @@ import br.com.devjoao.api.domain.User;
 
 public interface UserService {
     User FindById(Integer id);
+
+
 }
