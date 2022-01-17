@@ -1,4 +1,4 @@
-package br.com.dicasdeumdev.api;
+package br.com.devjoao.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
