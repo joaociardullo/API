@@ -1,6 +1,7 @@
 package br.com.devjoao.api.resources;
 
 
+import br.com.devjoao.api.domain.User;
 import br.com.devjoao.api.domain.dto.UserDTO;
 import br.com.devjoao.api.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -30,7 +31,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAll() {
-        return ResponseEntity.ok().body(service.findAll()
+        return ResponseEntity.ok().body(service.FindAll()
                 .stream().map(x -> mapper.map(x, UserDTO.class)).collect(Collectors.toList()));
     }
 
@@ -39,5 +40,11 @@ public class UserResource {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}").buildAndExpand(service.create(obj).getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> update(@PathVariable Integer id, @RequestBody UserDTO obj) {
+        obj.setId(id);
+        return ResponseEntity.ok().body(mapper.map(service.update(obj), UserDTO.class));
     }
 }
