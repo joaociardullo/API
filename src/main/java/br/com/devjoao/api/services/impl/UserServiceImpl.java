@@ -39,8 +39,6 @@ public class UserServiceImpl implements UserService {
         return repository.findAll();
     }
 
-// yure 2
-
     private void findByEmail(UserDTO obj) {
         Optional<User> user = repository.findByEmail(obj.getEmail());
         if(user.isPresent() && user.get().getId().equals(obj.getId())) {
